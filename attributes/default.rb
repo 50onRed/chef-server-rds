@@ -59,7 +59,7 @@ default['rds']['secret'] = 'aws_iam_secret'
 #     )
 #
 default['chef-server']['configuration'] = {
-     "notification_email" => "bwangia@50onred.com",
+     "notification_email" => "changeme@email.com",
        "postgresql" => {
           "enable" => false
        }
