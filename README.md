@@ -21,7 +21,7 @@ The role below depends on the following cookbooks
 
 Here's a sample chef role that uses the cookbook 
 
-`
+```ruby
 name "chef-server-rds"
 description "chef-server-rds"
 run_list(
@@ -61,7 +61,7 @@ override_attributes(
     "secret" => 'iam_secret'
    }
 )
-`
+```
 
 The role can then simply be run to configure both the RDS instance and the chef-server that uses it 
 
