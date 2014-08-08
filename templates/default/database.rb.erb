@@ -1,0 +1,8 @@
+override['chef_server']['postgresql']['sql_user'] = "<%= @username  %>"
+override['chef_server']['postgresql']['sql_password'] = "<%= @password  %>"
+override['chef_server']['postgresql']['sql_ro_user'] = "<%= @username  %>"
+override['chef_server']['postgresql']['sql_ro_password'] = "<%= @password  %>"
+override['chef_server']['postgresql']['vip'] = "<%= @host  %>"
+override['chef_server']['postgresql']['port'] = 5432
+override['chef_server']['api_fqdn'] = "<%= @fqdn %>"
+
