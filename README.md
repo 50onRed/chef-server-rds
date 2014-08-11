@@ -1,12 +1,11 @@
 Chef Server backed by AWS RDS
 ===========
 
-This cookbook configures a system to be a Chef Server using Amazons RDS for the postgress database. 
+This cookbook configures a system to be a Chef Server using Amazons RDS for the postgresql database. 
 
-Given the right iam role key/secret and rds parameters, it will provision an rds instance, install the appropriate platform-specific chef-server Omnibus package and perform the initial configuration of Chef Server.
+Given an iam key and secret, it will provision the rds instance if it doesn't exist in the account, initialize the chef server schema, and install the appropriate platform-specific chef-server Omnibus package and perform the initial configuration of Chef Server on an AWS elastic compute ubuntu instance.
 
-Using postgres on Amazon RDS offloads DB management away from the chef-server host. It also enables various functions like 
-scaling, backup, and restore. Similar configurations can be used for other db service providers 
+Using postgres on Amazon RDS offloads DB resource use away from the chef-server host. It also enables various DB functions like scaling, backup, and restore to be done independently of the chef-server installations. Similar configurations can be written for other db service providers.
 
 REQUIREMENTS
 ============
@@ -45,9 +44,6 @@ override_attributes(
     "nginx" => {
        "enable_non_ssl" => true,
     },
-    "chef-webui" => {
-      "enable" => true
-    },
     "postgresql" => {
       "enable" => false,
     },
@@ -65,4 +61,6 @@ override_attributes(
 
 The role can then simply be run to configure both the RDS instance and the chef-server that uses it 
 
-`knife ec2 server create -r "role[chef-server-rds]" -I ami-b66ca0de -G xyzGroup -S xyzKey -x ubuntu -f m3.medium -N chef_server_name`
+```
+knife ec2 server create -r "role[chef-server-rds]" -I ami-b66ca0de -G xyzGroup -S xyzKey -x ubuntu -f m3.medium -N chef_server_name
+```
