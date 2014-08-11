@@ -35,3 +35,5 @@ group :development do
   gem 'guard-rubocop'
   gem 'rake'
 end
+
+gem 'stove'
